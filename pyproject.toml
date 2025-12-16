@@ -1,0 +1,71 @@
+[project]
+name = "heimdall"
+version = "0.0.1"
+description = "A script for searching for sites on the tor network"
+requires-python = ">=3.9,<4.0"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Bogdan Mukhin", email = "bagdanmyha@mail.ru"},
+]
+keywords = ["tor", "darkweb", "search", "privacy", "anonymous"]
+
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: MIT License",
+
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+
+    "Operating System :: POSIX :: Linux",
+
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Security",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Information Analysis", 
+
+    "Topic :: Communications",
+    "Topic :: Utilities",
+    "Topic :: System :: Networking",
+
+    "Natural Language :: English",
+
+    "Environment :: Console",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+dependencies = [
+    "click>=8.3.1",
+    "requests>=2.32.5",
+    "stem>=1.8.2",
+    "requests[socks]>=2.32.5",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=4.9.0", 
+]
+
+[project.optional-dependencies]
+dev = [
+    "isort>=7.0.0",
+    "mypy>=1.19.1",
+    "ruff>=0.14.9",
+    "pydocstyle>=6.3.0",
+    "black>=25.12.0"
+]
+
+[project.scripts]
+heimdall = "heimdall.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/SmileIUwUI/heimdall"
+Repository = "https://github.com/SmileIUwUI/heimdall.git"
+"Bug Tracker" = "https://github.com/SmileIUwUI/heimdall/issues"
