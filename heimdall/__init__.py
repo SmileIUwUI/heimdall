@@ -1,6 +1,4 @@
-"""
-Heimdall - Tor network search tool
-"""
+"""Heimdall - Tor network search tool."""
 
 __version__ = "0.0.1"
 __author__ = "Bogdan Mukhin aka SmileIUwUI"
