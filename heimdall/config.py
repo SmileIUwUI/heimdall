@@ -4,7 +4,7 @@ import json
 import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Any
 
 import click
 
@@ -60,11 +60,27 @@ class Config:
                 config_file = config_dir / 'config.json'
                 with config_file.open("r+", encoding="utf8") as cf:
                     try:
-                        self._config = json.load(cf)
+                        config_data = ConfigData().__dict__.copy()
+                        config_data.update(json.load(cf))
+
+                        self._config =  ConfigData(**config_data)
                     except json.decoder.JSONDecodeError as err:
                         click.clear()
                         click.echo(error_style("Error parsing json configuration (use the '--verbose' flag for more details)"))
                         verbose_echo(self._verbose, err)
+        
+    def get(self, key: str, default: Any = None) -> Any:
+        """
+        Get configuration value by key.
+        
+        :param key: Configuration key name
+        :type key: str
+        :param default: Default value if key not found
+        :type default: Any
+        :return: Configuration value
+        :rtype: Any
+        """
+        return getattr(self._config, key, default)
 
     def _generate_config(self) -> ConfigData:
         verbose_echo(self._verbose, "Generating a configuration file with standard parameters")
