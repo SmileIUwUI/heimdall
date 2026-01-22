@@ -140,7 +140,7 @@ class TorManager:
             with data_path.open("r", encoding="utf8") as df:
                 try:
                     self._data = TorData.from_dict(json.load(df))
-                except json.decoder.JSONDecodeError as err:
+                except json.decoder.JSONDecodeError  as err:
                     click.clear()
                     click.echo(
                         error_style(
