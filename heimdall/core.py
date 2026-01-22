@@ -1,23 +1,27 @@
 """Module containing the main controller class for the application."""
+
 from typing import Optional
 
 import click
 
 from heimdall.config import Config
+from heimdall.tor_proxy import TorManager
 from heimdall.utils.console import verbose_echo
 
 
 class Controller:
     """
     Main application controller class.
-    
+
     Manages tor proxy configuration, search operations, and process coordination.
     """
 
     _query: str
     _config: Config
+    _tor_manager: TorManager
     _verbose: bool
     _config_path: Optional[str]
+
     def __init__(self, ctx: click.core.Context, query: str) -> None:
         """
         Initialize the Controller instance.
@@ -31,5 +35,7 @@ class Controller:
         self._verbose = ctx.obj["verbose"]
         self._config_path = ctx.obj["config_path"]
 
-        verbose_echo(self._verbose, "Initializing the \"Config\" object")
+        verbose_echo(self._verbose, 'Initializing the "Config" object')
         self._config = Config(self._config_path, self._verbose)
+        verbose_echo(self._verbose, 'Initializing the "TorManager" object')
+        self._tor_manager = TorManager(self._config.get("tor_data_path"), self._verbose)

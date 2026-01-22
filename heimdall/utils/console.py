@@ -1,6 +1,7 @@
 """Utilities for console output operations."""
 
 import typing
+
 import click
 
 
@@ -25,7 +26,7 @@ def verbose_echo(
 ) -> None:
     """
     Print message only when verbose mode is enabled.
-    
+
     :param verbose: If True, print the message; otherwise do nothing
     :type verbose: bool
     :param message: Text to display when verbose is True
@@ -62,13 +63,32 @@ def verbose_echo(
     :type reset: bool
     """
     if verbose:
-        click.echo(click.style(f"[VERBOSE] {message}", fg, bg, bold, dim, underline, overline, italic, blink, reverse, strikethrough, reset), file, nl, err, color)
+        click.echo(
+            click.style(
+                f"[VERBOSE] {message}",
+                fg,
+                bg,
+                bold,
+                dim,
+                underline,
+                overline,
+                italic,
+                blink,
+                reverse,
+                strikethrough,
+                reset,
+            ),
+            file,
+            nl,
+            err,
+            color,
+        )
 
 
 def error_style(text: str) -> str:
     """
     Apply error styling to text.
-    
+
     :param text: Text to style as an error
     :type text: str
     :return: Text styled with red color and bold formatting
